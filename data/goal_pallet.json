@@ -1,0 +1,12 @@
+{
+  "description": "Warehouse Pallet Goal Configuration: Tower 1 [A on B on C] and Tower 2 [D on E]",
+  "blocks": ["A", "B", "C", "D", "E", "F", "G"],
+  "goal_predicates": [
+    ["On", "B", "C"],
+    ["On", "A", "B"],
+    ["OnTable", "C"],
+    ["Clear", "A"],
+    ["On", "D", "E"],
+    ["Clear", "D"]
+  ]
+}

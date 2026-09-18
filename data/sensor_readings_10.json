@@ -1,0 +1,102 @@
+[
+  {
+    "box_id": "BOX-01",
+    "description": "Nominal pristine box: all sensors negative",
+    "weight_anomaly": false,
+    "weight_deviation_kg": 0.2,
+    "crack_detected": false,
+    "crack_severity_score": 0.1,
+    "tilt_triggered": false,
+    "sensor_noise": "Low"
+  },
+  {
+    "box_id": "BOX-02",
+    "description": "Severe catastrophic impact: all 3 sensors strongly positive",
+    "weight_anomaly": true,
+    "weight_deviation_kg": 8.5,
+    "crack_detected": true,
+    "crack_severity_score": 9.2,
+    "tilt_triggered": true,
+    "sensor_noise": "Low"
+  },
+  {
+    "box_id": "BOX-03",
+    "description": "Tilt trigger only (conveyor bump): weight and crack clear",
+    "weight_anomaly": false,
+    "weight_deviation_kg": 0.4,
+    "crack_detected": false,
+    "crack_severity_score": 0.5,
+    "tilt_triggered": true,
+    "sensor_noise": "Low"
+  },
+  {
+    "box_id": "BOX-04",
+    "description": "Vision crack detected only: hairline surface scratch",
+    "weight_anomaly": false,
+    "weight_deviation_kg": 0.3,
+    "crack_detected": true,
+    "crack_severity_score": 4.2,
+    "tilt_triggered": false,
+    "sensor_noise": "Low"
+  },
+  {
+    "box_id": "BOX-05",
+    "description": "Weight discrepancy only with High Sensor Noise (electrical glitch)",
+    "weight_anomaly": true,
+    "weight_deviation_kg": 6.8,
+    "crack_detected": false,
+    "crack_severity_score": 0.2,
+    "tilt_triggered": false,
+    "sensor_noise": "High"
+  },
+  {
+    "box_id": "BOX-06",
+    "description": "Both crack detector and tilt positive, normal weight (crushed corner)",
+    "weight_anomaly": false,
+    "weight_deviation_kg": 0.8,
+    "crack_detected": true,
+    "crack_severity_score": 7.5,
+    "tilt_triggered": true,
+    "sensor_noise": "Low"
+  },
+  {
+    "box_id": "BOX-07",
+    "description": "Heavy contents shifted: severe weight discrepancy + tilt, no exterior crack",
+    "weight_anomaly": true,
+    "weight_deviation_kg": 7.9,
+    "crack_detected": false,
+    "crack_severity_score": 0.3,
+    "tilt_triggered": true,
+    "sensor_noise": "Low"
+  },
+  {
+    "box_id": "BOX-08",
+    "description": "Moderate borderline weight deviation and minor crack (partial tear)",
+    "weight_anomaly": true,
+    "weight_deviation_kg": 4.5,
+    "crack_detected": true,
+    "crack_severity_score": 3.8,
+    "tilt_triggered": false,
+    "sensor_noise": "Low"
+  },
+  {
+    "box_id": "BOX-09",
+    "description": "High sensor noise with normal physical state (false alarm test)",
+    "weight_anomaly": false,
+    "weight_deviation_kg": 1.2,
+    "crack_detected": false,
+    "crack_severity_score": 0.8,
+    "tilt_triggered": false,
+    "sensor_noise": "High"
+  },
+  {
+    "box_id": "BOX-10",
+    "description": "Massive fracture: major crack severity, extreme weight loss, tilt tripped",
+    "weight_anomaly": true,
+    "weight_deviation_kg": 9.5,
+    "crack_detected": true,
+    "crack_severity_score": 9.8,
+    "tilt_triggered": true,
+    "sensor_noise": "High"
+  }
+]

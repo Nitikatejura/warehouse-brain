@@ -1,0 +1,258 @@
+[
+  {
+    "id": "RULE_01",
+    "name": "Wheel Slip Detection",
+    "if_all": [
+      "wheel_rpm_high",
+      "ground_speed_zero"
+    ],
+    "then_assert": [
+      "wheel_slipping"
+    ],
+    "explanation": "Wheel tachometer indicates rapid rotation while optical ground speed sensor registers zero motion."
+  },
+  {
+    "id": "RULE_02",
+    "name": "Floor Traction Loss / Oil Slick",
+    "if_all": [
+      "wheel_slipping",
+      "accelerometer_tilt_normal"
+    ],
+    "then_assert": [
+      "traction_loss_hazard",
+      "inspect_floor_surface"
+    ],
+    "explanation": "Wheel is slipping without chassis incline, indicating low-friction liquid/debris on warehouse floor."
+  },
+  {
+    "id": "RULE_03",
+    "name": "Motor Thermal Overload",
+    "if_all": [
+      "motor_current_high",
+      "motor_temp_high"
+    ],
+    "then_assert": [
+      "thermal_overload",
+      "shutdown_drive_actuator"
+    ],
+    "explanation": "Drive motor current draw exceeds 15A and stator thermocouple reads above 85 deg C."
+  },
+  {
+    "id": "RULE_04",
+    "name": "Drive Wheel Gearbox Jam",
+    "if_all": [
+      "wheel_rpm_zero",
+      "motor_current_high"
+    ],
+    "then_assert": [
+      "gearbox_mechanical_jam"
+    ],
+    "explanation": "High motor current with zero rotational speed signifies a stalled gearbox or seized mechanical axle."
+  },
+  {
+    "id": "RULE_05",
+    "name": "Encoder Sensor Fault",
+    "if_all": [
+      "drive_command_active",
+      "wheel_encoder_pulses_zero"
+    ],
+    "then_assert": [
+      "encoder_failure",
+      "sensor_drift"
+    ],
+    "explanation": "Drive commands are being sent by controller but wheel quadrature encoder produces no pulse train."
+  },
+  {
+    "id": "RULE_06",
+    "name": "Battery Cell Degradation",
+    "if_all": [
+      "rapid_voltage_drop",
+      "normal_load"
+    ],
+    "then_assert": [
+      "battery_fault",
+      "replace_battery_cell"
+    ],
+    "explanation": "Terminal voltage drops steeply under normal nominal current draw, indicating high internal cell impedance."
+  },
+  {
+    "id": "RULE_07",
+    "name": "Battery BMS Thermal Cutoff",
+    "if_all": [
+      "battery_temp_high",
+      "charging_current_zero"
+    ],
+    "then_assert": [
+      "battery_bms_cutoff"
+    ],
+    "explanation": "Battery Management System has isolated the pack due to thermal safety limit exceeded (>50 deg C)."
+  },
+  {
+    "id": "RULE_08",
+    "name": "Gripper Actuator Stall",
+    "if_all": [
+      "gripper_command_close",
+      "gripper_jaws_open",
+      "gripper_current_high"
+    ],
+    "then_assert": [
+      "gripper_stall",
+      "box_grasp_failure"
+    ],
+    "explanation": "Gripper servo draws maximum stall current while jaw displacement sensor indicates jaws failed to close."
+  },
+  {
+    "id": "RULE_09",
+    "name": "Lidar Sensor Optical Smudge / Blindness",
+    "if_all": [
+      "lidar_points_sparse",
+      "ambient_dust_high"
+    ],
+    "then_assert": [
+      "lidar_optic_obscured",
+      "clean_sensor_optics"
+    ],
+    "explanation": "LiDAR pointcloud density dropped below threshold in a high airborne particulate environment."
+  },
+  {
+    "id": "RULE_10",
+    "name": "Lidar vs Ultrasonic Sensor Discrepancy",
+    "if_all": [
+      "lidar_distance_near",
+      "ultrasonic_distance_far"
+    ],
+    "then_assert": [
+      "sensor_drift",
+      "recalibrate_proximity_sensors"
+    ],
+    "explanation": "LiDAR detects an obstacle within 0.5m but ultrasonic transducer detects clear path, indicating calibration skew."
+  },
+  {
+    "id": "RULE_11",
+    "name": "Vision Camera Lens Smudge",
+    "if_all": [
+      "crack_detected_all_boxes",
+      "illumination_nominal"
+    ],
+    "then_assert": [
+      "vision_lens_smudge",
+      "clean_camera_lens"
+    ],
+    "explanation": "Crack detector fires indiscriminately across every scanned box under nominal warehouse lighting."
+  },
+  {
+    "id": "RULE_12",
+    "name": "Weight Cell Zero-Drift Calibration",
+    "if_all": [
+      "pallet_tray_empty",
+      "weight_cell_positive"
+    ],
+    "then_assert": [
+      "weight_sensor_drift",
+      "tare_load_cell"
+    ],
+    "explanation": "Strain gauge load cell outputs positive weight reading when tray is mechanically verified empty."
+  },
+  {
+    "id": "RULE_13",
+    "name": "Docking Contact Oxidation",
+    "if_all": [
+      "dock_physically_engaged",
+      "charging_voltage_low",
+      "charge_resistance_high"
+    ],
+    "then_assert": [
+      "dock_pin_oxidation",
+      "clean_charging_contacts"
+    ],
+    "explanation": "High contact resistance across docking pins prevents current transfer despite physical docking alignment."
+  },
+  {
+    "id": "RULE_14",
+    "name": "Pallet Elevation Tilt Warning",
+    "if_all": [
+      "accelerometer_tilt_high",
+      "ground_speed_zero"
+    ],
+    "then_assert": [
+      "pallet_uneven_hazard",
+      "level_pallet_support"
+    ],
+    "explanation": "Chassis tilt exceeds safe stability envelope (>12 degrees) on a stationary pallet."
+  },
+  {
+    "id": "RULE_15",
+    "name": "Drive Train Acoustic Resonance",
+    "if_all": [
+      "high_frequency_acoustic",
+      "vibration_elevated"
+    ],
+    "then_assert": [
+      "bearing_spalling",
+      "lubricate_bearings"
+    ],
+    "explanation": "Ultrasonic microphone and piezo accelerometer detect classic harmonic signature of bearing raceway spalling."
+  },
+  {
+    "id": "RULE_16",
+    "name": "Compound Critical Safety Fault",
+    "if_all": [
+      "thermal_overload",
+      "gearbox_mechanical_jam"
+    ],
+    "then_assert": [
+      "critical_safety_hazard",
+      "urgent_technician_dispatch"
+    ],
+    "explanation": "Concurrently jammed drive train and overheating windings pose an imminent electrical fire risk."
+  },
+  {
+    "id": "RULE_17",
+    "name": "Emergency Hardware E-Stop Active",
+    "if_all": [
+      "estop_circuit_open"
+    ],
+    "then_assert": [
+      "hardware_estop_engaged",
+      "inspect_safety_bumper"
+    ],
+    "explanation": "Hardware safety relay loop is de-energized, halting all 48V power bus outputs."
+  },
+  {
+    "id": "RULE_18",
+    "name": "Technician Action Dispatcher",
+    "if_all": [
+      "urgent_technician_dispatch"
+    ],
+    "then_assert": [
+      "lockout_tagout_required"
+    ],
+    "explanation": "Critical fault requires manual Lockout/Tagout (LOTO) inspection prior to restoring automated run status."
+  },
+  {
+    "id": "RULE_19",
+    "name": "motor_temp_high, current_draw_excessive",
+    "if_all": [
+      "motor_temp_high",
+      "current_draw_excessive"
+    ],
+    "then_assert": [
+      "motor_thermal_overload",
+      "halt_robot"
+    ],
+    "explanation": "High motor temperature paired with excessive current draw indicates imminent thermal failure."
+  },
+  {
+    "id": "RULE_20",
+    "name": "Motor Overheat Warning",
+    "if_all": [
+      "motor_temp_high",
+      "current_draw_excessive"
+    ],
+    "then_assert": [
+      "motor_thermal_overload",
+      "halt_robot"
+    ],
+    "explanation": "High motor temperature paired with excessive current draw indicates imminent thermal failure."
+  }
+]

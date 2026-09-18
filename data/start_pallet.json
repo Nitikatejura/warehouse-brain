@@ -1,0 +1,19 @@
+{
+  "description": "Warehouse Pallet Initial Configuration (Boxes A-G)",
+  "blocks": ["A", "B", "C", "D", "E", "F", "G"],
+  "predicates": [
+    ["OnTable", "A"],
+    ["OnTable", "B"],
+    ["On", "C", "A"],
+    ["OnTable", "D"],
+    ["On", "E", "D"],
+    ["OnTable", "F"],
+    ["OnTable", "G"],
+    ["Clear", "B"],
+    ["Clear", "C"],
+    ["Clear", "E"],
+    ["Clear", "F"],
+    ["Clear", "G"],
+    ["ArmEmpty"]
+  ]
+}
